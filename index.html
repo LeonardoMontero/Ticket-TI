@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Abertura de Tickets de Suporte em TI</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .container {
+            position: relative;
+        }
+        header {
+            text-align: center; /* Centraliza o conteúdo do header */
+        }
+        .logo {
+            max-height: 100px; /* Altura máxima da logo */
+            max-width: 100%; /* Largura máxima da logo */
+            padding-right: 10px; /* Espaçamento à direita */
+            vertical-align: middle; /* Alinha verticalmente */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <img src="C:\Users\leonardo.monteiro\Desktop\abertura-tickets\images\logo_azul.png" alt="logo_azul" class="logo">
+            <h1>Abrir Ticket de Suporte</h1>
+        </header>
+        <main>
+            <form id="ticketForm">
+                <div class="form-group">
+                    <label for="title">Nome do colaborador:</label>
+                    <input type="text" id="title" name="title" required>
+                </div>
+                <div class="form-group">
+                    <label for="category">Categoria:</label>
+                    <select id="category" name="category" required>
+                        <option value="">Selecione...</option>
+                        <option value="Hardware">Hardware</option>
+                        <option value="Software">Software</option>
+                        <option value="Rede">Rede</option>
+                        <option value="Outros">Outros</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="description">Descrição:</label>
+                    <textarea id="description" name="description" rows="4" required></textarea>
+                </div>
+                <button type="submit">Enviar Ticket</button>
+            </form>
+            <section class="tickets-section">
+                <h2>Tickets Abertos</h2>
+                <table id="ticketTable">
+                    <thead>
+                        <tr>
+                            <th>Data de Abertura</th>
+                            <th>Nome do Colaborador</th>
+                            <th>Categoria</th>
+                            <th>Descrição</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Dados dos tickets serão adicionados aqui -->
+                    </tbody>
+                </table>
+            </section>
+        </main>
+    </div>
+    <script src="scripts.js"></script>
+</body>
+</html>

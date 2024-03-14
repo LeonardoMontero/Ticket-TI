@@ -50,6 +50,46 @@
             </form>
         </main>
     </div>
-    <script src="scripts.js"></script>
+    <script>
+        document.getElementById('ticketForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            // Obter valores do formulário
+            var title = document.getElementById('title').value;
+            var category = document.getElementById('category').value;
+            var description = document.getElementById('description').value;
+            
+            // Obter a data e hora atual
+            var now = new Date();
+            var formattedDate = now.toLocaleString();
+
+            // Enviar os dados para o Google Sheets
+            enviarDadosParaGoogleSheets(title, category, description, formattedDate);
+
+            // Criar nova linha na tabela para o ticket aberto (opcional)
+            var table = document.getElementById('ticketTable').getElementsByTagName('tbody')[0];
+            var newRow = table.insertRow();
+            newRow.innerHTML = '<td>' + formattedDate + '</td><td>' + title + '</td><td>' + category + '</td><td>' + description + '</td>';
+            
+            // Limpar o formulário após a submissão
+            document.getElementById('ticketForm').reset();
+        });
+
+        function enviarDadosParaGoogleSheets(title, category, description, formattedDate) {
+            var url = 'URL_DA_SUA_FUNÇÃO_GOOGLE_APPS_SCRIPT';
+            var formData = new FormData();
+            formData.append('title', title);
+            formData.append('category', category);
+            formData.append('description', description);
+            formData.append('formattedDate', formattedDate);
+
+            fetch(url, {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => console.log('Dados enviados para o Google Sheets com sucesso!'))
+            .catch(error => console.error('Erro ao enviar dados para o Google Sheets:', error));
+        }
+    </script>
 </body>
 </html>
